@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://2sdl3o0e3s4"]
+
+[ext_resource type="Script" path="res://Entities/Enemy.cs" id="1_8xcoq"]
+[ext_resource type="Texture2D" uid="uid://tjvhqdrjd016" path="res://Assets/marshmallow/pixil-frame-0.png" id="1_greu2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u2ep"]
+atlas = ExtResource("1_greu2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5k8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u2ep")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ud17j"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_8xcoq")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, 2)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_u5k8h")
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_ud17j")
