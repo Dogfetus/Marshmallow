@@ -46,14 +46,14 @@ public partial class Spawner : Node2D
         Enemy enemyInstance = (Enemy)enemyScene.Instantiate();
 
         // Set a random position within the screen boundaries (or your preferred spawn area)
-        float randomX = rng.RandfRange(500, 1500);
-        float randomY = rng.RandfRange(250, 1250);
+        float randomX = rng.RandfRange(0, 1500);
+        float randomY = rng.RandfRange(0, 1000);
         enemyInstance.Position = new Vector2(randomY, randomX);
 
         // Add the enemy to the scene tree
         AddChild(enemyInstance);
 
-        GD.Print("Spawned enemy at position: ", enemyInstance.Position, ", nr of enemies: ", _currentEnemies);
+        GD.Print("Spawned enemy at position: ", enemyInstance.Position, ", nr of enemies: ", _currentEnemies + 1);
 
 		_currentEnemies++;
 	}

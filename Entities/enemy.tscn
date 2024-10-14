@@ -21,6 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ud17j"]
 
 [node name="Enemy" type="CharacterBody2D"]
+platform_on_leave = 1
 script = ExtResource("1_8xcoq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -32,3 +33,18 @@ sprite_frames = SubResource("SpriteFrames_u5k8h")
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_ud17j")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -25.0
+offset_right = 113.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Press T to speak"

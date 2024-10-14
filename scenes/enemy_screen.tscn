@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq67fj3obur18"]
+
+[ext_resource type="Script" path="res://Utility/EnemyScreen.cs" id="1_tg7fm"]
+[ext_resource type="Texture2D" uid="uid://clb4rd7ocli5w" path="res://Assets/marshmallow/pixel-art-illustration-pixelated-campfire-burning-brightly-with-marshmallows-roasting-sticks-friends-gathered-around_1295806-18081.jpg" id="2_hv21w"]
+[ext_resource type="Texture2D" uid="uid://rhef87mc83w" path="res://Assets/marshmallow/52e4373e341ad0e.png" id="3_ma4p7"]
+[ext_resource type="Texture2D" uid="uid://tjvhqdrjd016" path="res://Assets/marshmallow/pixil-frame-0.png" id="3_t8gwa"]
+
+[node name="EnemyScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tg7fm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.5358, 0.513, 0.57, 0.709804)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -756.0
+offset_top = -446.0
+offset_right = 1164.0
+offset_bottom = 634.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_hv21w")
+
+[node name="PlayerTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -554.0
+offset_top = -370.0
+offset_right = 646.0
+offset_bottom = 1280.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_ma4p7")
+
+[node name="MarshmallowTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = -293.0
+offset_right = 579.0
+offset_bottom = -52.0
+texture = ExtResource("3_t8gwa")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -626.0
+offset_top = -33.0
+offset_right = -257.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "this is a placeholder"
+wrap_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = -16.0
+offset_right = 547.0
+offset_bottom = 218.0
+text = "Damn you fool"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -473.0
+offset_top = 199.0
+offset_right = -390.0
+offset_bottom = 247.0
+text = "Speak"
+
+[connection signal="pressed" from="Button" to="." method="OnSpeakButtonPressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dk6u5nr6skk8c"]
+[gd_scene load_steps=41 format=3 uid="uid://dk6u5nr6skk8c"]
 
 [ext_resource type="Script" path="res://Entities/Player.cs" id="1_bhhli"]
 [ext_resource type="Texture2D" uid="uid://bxw8kea43dpay" path="res://Assets/player/1/D_Idle.png" id="1_dp8bb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://evf7dqut1ipc" path="res://Assets/player/1/D_Walk.png" id="5_2avao"]
 [ext_resource type="Texture2D" uid="uid://d1xjf5r4aq1nl" path="res://Assets/player/1/S_Walk.png" id="6_3wrve"]
 [ext_resource type="Texture2D" uid="uid://lrs27lp3dtu1" path="res://Assets/player/1/U_Walk.png" id="7_vbe2w"]
+[ext_resource type="Script" path="res://Utility/TextEdit.cs" id="8_fact8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6h3y"]
 atlas = ExtResource("1_dp8bb")
@@ -255,6 +256,7 @@ animations = [{
 size = Vector2(10, 14.5)
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(-566, -305)
 scale = Vector2(1.2, 1.2)
 script = ExtResource("1_bhhli")
 
@@ -272,6 +274,7 @@ shape = SubResource("RectangleShape2D_lo7f8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(472.5, 251.667)
+zoom = Vector2(1.25, 1.25)
 limit_left = 0
 limit_top = 0
 limit_right = 2710
@@ -280,3 +283,20 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 editor_draw_limits = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -116.0
+offset_right = 162.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "type something"
+script = ExtResource("8_fact8")
