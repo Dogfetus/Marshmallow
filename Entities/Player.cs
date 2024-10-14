@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D
 	// for correct sprite:
 	public string spriteAction = "idle";
 	public string spriteDirection = "up";
+	public string message = "";
 
 	// happens when player is created
 	public override void _Ready(){
@@ -59,6 +60,7 @@ public partial class Player : CharacterBody2D
 
 	// to 
 	private void _HandleText(){
-
+		message = _text.Text;
+		_text.Text = "";
 	}
 }

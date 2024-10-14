@@ -28,9 +28,7 @@ public partial class Enemy : CharacterBody2D
             if (distanceToPlayer <= _interactionRange)
             {
                 ShowInteractUI(true);
-				if (Input.IsActionJustPressed("interact")){
-					GetTree().ChangeSceneToFile("res://scenes/enemy_screen.tscn");
-                }
+				if (_player.messages)
             }
             else
             {
