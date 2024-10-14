@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dk6u5nr6skk8c"]
+[gd_scene load_steps=42 format=3 uid="uid://dk6u5nr6skk8c"]
 
 [ext_resource type="Script" path="res://Entities/Player.cs" id="1_bhhli"]
 [ext_resource type="Texture2D" uid="uid://bxw8kea43dpay" path="res://Assets/player/1/D_Idle.png" id="1_dp8bb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d1xjf5r4aq1nl" path="res://Assets/player/1/S_Walk.png" id="6_3wrve"]
 [ext_resource type="Texture2D" uid="uid://lrs27lp3dtu1" path="res://Assets/player/1/U_Walk.png" id="7_vbe2w"]
 [ext_resource type="Script" path="res://Utility/TextEdit.cs" id="8_fact8"]
+[ext_resource type="Script" path="res://Utility/Bubble.cs" id="9_vwfdt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6h3y"]
 atlas = ExtResource("1_dp8bb")
@@ -262,7 +263,7 @@ script = ExtResource("1_bhhli")
 
 [node name="Sprit" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(472, 249)
+position = Vector2(470.833, 249.167)
 sprite_frames = SubResource("SpriteFrames_vfw22")
 animation = &"walk_side"
 autoplay = "idle_down"
@@ -292,11 +293,35 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -158.0
-offset_top = -116.0
-offset_right = 162.0
-offset_bottom = 124.0
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 placeholder_text = "type something"
+wrap_mode = 1
 script = ExtResource("8_fact8")
+
+[node name="Bubble" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 428.333
+offset_top = 219.167
+offset_right = 573.333
+offset_bottom = 242.167
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+ellipsis_char = ""
+script = ExtResource("9_vwfdt")
+
+[node name="Timer" type="Timer" parent="Bubble"]
+wait_time = 4.0
+autostart = true

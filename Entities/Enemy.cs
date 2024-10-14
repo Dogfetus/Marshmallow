@@ -1,19 +1,66 @@
 using Godot;
-using System;
+using GroqApiLibrary;
+using DotNetEnv;
+using System.Text.Json.Nodes;
+using Newtonsoft.Json.Linq;
 
 public partial class Enemy : CharacterBody2D
 {
+    
+    private GroqApiClient _ai;
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
-	private Node2D _player;  
+	private Player _player;  
 	private const float _interactionRange = 100.0f;
 	private Label _interactLabel;
+    // private bool _rating;
+    // private bool _responding;
+    private bool _spokenTo;
 
-    public override void _Ready()
+    private float health = 100.0f;
+
+    public override async void _Ready()
     {
+        // load env variables:
+        Env.Load();
+        string apiKey = Env.GetString("GROQ");
+
+        // other nodes
         _interactLabel = GetNode<Label>("Label");
-        _player = GetNode<CharacterBody2D>("/root/Node/Player");
+        _player = GetNode<Player>("/root/Node/Player");
         _interactLabel.Visible = false; 
+
+        // ai api
+        _ai = new GroqApiClient(apiKey);
+        var request = new JsonObject
+        {
+            ["model"] = "mixtral-8x7b-32768",
+            ["temperature"] = 0.7,
+            ["max_tokens"] = 150,
+            ["messages"] = new JsonArray
+            {
+                new JsonObject
+                {
+                    ["role"] = "system",
+                    ["content"] = "You are a helpful assistant."
+                },
+                new JsonObject
+                {
+                    ["role"] = "user",
+                    ["content"] = "Write a haiku about artificial intelligence."
+                }
+            }
+        };
+
+        // Convert System.Text.Json.JsonObject to a string
+        string requestString = request.ToString();
+
+        // Parse the string into a Newtonsoft.Json.Linq.JObject
+        JObject newtonsoftRequest = JObject.Parse(requestString);
+
+
+        var result = await _ai.CreateChatCompletionAsync(newtonsoftRequest);
+        GD.Print(result?["choices"]?[0]?["message"]?["content"]?.ToString());
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -27,12 +74,20 @@ public partial class Enemy : CharacterBody2D
             float distanceToPlayer = Position.DistanceTo(_player.Position + new Vector2(-225,-45));
             if (distanceToPlayer <= _interactionRange)
             {
-                ShowInteractUI(true);
-				if (_player.messages)
+                if (!_spokenTo){
+                    ShowInteractUI(true);
+                }
+				if (_player.Message != string.Empty){
+                    _spokenTo = true;
+                    ShowInteractUI(false);
+                    _RateMessage(_player.Message);
+                    _Respond(_player.Message);
+                    _player.Message = "";
+                }
             }
             else
             {
-                // Hide "Press E to interact" UI
+                // Hide "Press T to interact" UI
                 ShowInteractUI(false);
             }
         }
@@ -48,5 +103,14 @@ public partial class Enemy : CharacterBody2D
             _interactLabel.Visible = visible;
 
         }
+    }
+
+    private void _RateMessage(string message){
+        // _rating = true;
+
+    }
+
+    private void _Respond(string message){
+        // _responding = true;
     }
 }
