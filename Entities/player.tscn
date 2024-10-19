@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dk6u5nr6skk8c"]
+[gd_scene load_steps=45 format=3 uid="uid://dk6u5nr6skk8c"]
 
 [ext_resource type="Script" path="res://Entities/Player.cs" id="1_bhhli"]
 [ext_resource type="Texture2D" uid="uid://bxw8kea43dpay" path="res://Assets/player/1/D_Idle.png" id="1_dp8bb"]
@@ -254,38 +254,64 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo7f8"]
-size = Vector2(10, 14.5)
+size = Vector2(10, 15.8333)
+
+[sub_resource type="LabelSettings" id="LabelSettings_drnh6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxvm5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81mv0"]
+bg_color = Color(0.6, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-566, -305)
+z_as_relative = false
+y_sort_enabled = true
 scale = Vector2(1.2, 1.2)
 script = ExtResource("1_bhhli")
 
 [node name="Sprit" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
-position = Vector2(470.833, 249.167)
 sprite_frames = SubResource("SpriteFrames_vfw22")
 animation = &"walk_side"
 autoplay = "idle_down"
 frame_progress = 0.75419
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2(472, 252)
+y_sort_enabled = true
+position = Vector2(0, 2.08333)
 shape = SubResource("RectangleShape2D_lo7f8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(472.5, 251.667)
+scale = Vector2(0.8, 0.8)
 zoom = Vector2(1.25, 1.25)
 limit_left = 0
 limit_top = 0
-limit_right = 2710
-limit_bottom = 1510
+limit_right = 2000
+limit_bottom = 1200
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 editor_draw_limits = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+z_index = 11
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -162.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 29.0
+grow_horizontal = 0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_drnh6")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
 anchors_preset = 8
@@ -309,10 +335,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 428.333
-offset_top = 219.167
-offset_right = 573.333
-offset_bottom = 242.167
+offset_left = -43.3333
+offset_top = -29.1667
+offset_right = 101.667
+offset_bottom = -6.16667
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6, 0.6)
@@ -324,4 +350,16 @@ script = ExtResource("9_vwfdt")
 
 [node name="Timer" type="Timer" parent="Bubble"]
 wait_time = 4.0
+one_shot = true
 autostart = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -18.3333
+offset_top = 14.1667
+offset_right = 127.667
+offset_bottom = 27.1667
+scale = Vector2(0.25, 0.25)
+theme_override_styles/background = SubResource("StyleBoxFlat_sxvm5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_81mv0")
+value = 100.0
+show_percentage = false

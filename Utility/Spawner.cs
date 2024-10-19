@@ -53,8 +53,12 @@ public partial class Spawner : Node2D
         // Add the enemy to the scene tree
         AddChild(enemyInstance);
 
-        GD.Print("Spawned enemy at position: ", enemyInstance.Position, ", nr of enemies: ", _currentEnemies + 1);
+        // GD.Print("Spawned enemy at position: ", enemyInstance.Position, ", nr of enemies: ", _currentEnemies + 1);
 
 		_currentEnemies++;
+	}
+
+	public void Decrease(){
+		_currentEnemies--;
 	}
 }

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://2sdl3o0e3s4"]
+[gd_scene load_steps=9 format=3 uid="uid://2sdl3o0e3s4"]
 
 [ext_resource type="Script" path="res://Entities/Enemy.cs" id="1_8xcoq"]
 [ext_resource type="Texture2D" uid="uid://tjvhqdrjd016" path="res://Assets/marshmallow/pixil-frame-0.png" id="1_greu2"]
+[ext_resource type="Script" path="res://Utility/Bubble.cs" id="3_6jxx7"]
+[ext_resource type="Script" path="res://Utility/MessageDelay.cs" id="4_b8fnh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6u2ep"]
 atlas = ExtResource("1_greu2")
@@ -19,19 +21,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ud17j"]
+size = Vector2(20, 21)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcium"]
 
 [node name="Enemy" type="CharacterBody2D"]
+y_sort_enabled = true
 platform_on_leave = 1
 script = ExtResource("1_8xcoq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
-position = Vector2(-1, 2)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_u5k8h")
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_ud17j")
 
 [node name="Label" type="Label" parent="."]
@@ -39,12 +45,48 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -27.0
+offset_left = -26.0
 offset_top = -25.0
-offset_right = 113.0
+offset_right = 114.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Press T to speak"
+
+[node name="Bubble" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -41.0
+offset_right = 181.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+label_settings = SubResource("LabelSettings_fcium")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+ellipsis_char = ""
+script = ExtResource("3_6jxx7")
+
+[node name="Timer" type="Timer" parent="Bubble"]
+wait_time = 4.0
+autostart = true
+
+[node name="MessageDelay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+script = ExtResource("4_b8fnh")
+
+[node name="DamageDelay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+script = ExtResource("4_b8fnh")
