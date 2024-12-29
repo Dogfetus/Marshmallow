@@ -51,6 +51,7 @@ This game is made with Godot, and only ran within it. It was never exported.
 
 ## 🎮 Credits
 - **Game Design**: Me
+- **Textures**: Found [online](https://itch.io/game-assets/free)
 - **Powered By**: Groq API & Godot Engine
 - **Special Thanks**: To everyone who loves roasting marshmallows—literally or figuratively!
 
