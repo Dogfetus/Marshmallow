@@ -1330,6 +1330,7 @@ tile_map_data = PackedByteArray("AAAmABwABgAUABAAAAA=")
 tile_set = SubResource("TileSet_hdopc")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="world/Map"]
+visible = false
 position = Vector2(203, 95)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="world/Map/StaticBody2D"]
